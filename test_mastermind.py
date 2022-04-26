@@ -1,11 +1,11 @@
-import unittest
-import mastermind as mm
-
 """Test module for the mastermind application
 """
 
+import unittest
+import mastermind as mm
+
 class Tests(unittest.TestCase):
-    
+
     """Test class for mastermind application
     """
 

@@ -69,12 +69,12 @@ def calc_marking(code: Combination, guess: Combination) -> Marking:
         if code_element == guess_element:
             blacks += 1
         else:
-            code_remains.append(c)
-            guess_remains.append(g)
-    for g in guess_remains:
-        if g in code_remains:
+            code_remains.append(code_element)
+            guess_remains.append(guess_element)
+    for guess_element in guess_remains:
+        if guess_element in code_remains:
             whites += 1
-            code_remains.remove(g)
+            code_remains.remove(guess_element)
     blanks = 4 - blacks - whites
     return Marking(blacks, whites, blanks)
 

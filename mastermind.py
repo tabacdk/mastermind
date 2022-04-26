@@ -4,7 +4,7 @@ Mastermind, the game
 
 This is an implementation of the classic board game in Python. The focus of
 the implementation is on strong typing, testing, and validation. The user
-interface is rudimentary, but it has not been the focus of the 
+interface is rudimentary, but it has not been the focus of the
 implementation.
 """
 
@@ -65,8 +65,8 @@ def calc_marking(code: Combination, guess: Combination) -> Marking:
     whites = 0
     code_remains = []
     guess_remains = []
-    for c, g in zip(code, guess):
-        if c == g:
+    for code_element, guess_element in zip(code, guess):
+        if code_element == guess_element:
             blacks += 1
         else:
             code_remains.append(c)
@@ -84,30 +84,30 @@ def get_code() -> Combination:
     Returns: a random Combination
     """
     code : Combination = (
-        random.choice(list(Pin)), random.choice(list(Pin)), 
+        random.choice(list(Pin)), random.choice(list(Pin)),
         random.choice(list(Pin)), random.choice(list(Pin))
     )
     return code
 
-def str2combination(s : str) -> Combination:
+def str2combination(input_string : str) -> Combination:
     """Converts a string of four digits into a Combination
 
-    s: The input string
-    
+    input_string: The input string
+
     Returns: The combination
 
     Raises: ValueError
     """
-    l = list(s)
-    if len(l) != 4:
+    input_list = list(input_string)
+    if len(input_list) != 4:
         raise ValueError("Bad number of pins")
-    c : Combination = (
-        Pin(int(l[0])),
-        Pin(int(l[1])),
-        Pin(int(l[2])),
-        Pin(int(l[3]))
+    combi : Combination = (
+        Pin(int(input_list[0])),
+        Pin(int(input_list[1])),
+        Pin(int(input_list[2])),
+        Pin(int(input_list[3]))
     )
-    return c
+    return combi
 
 class Game:
     """A game simutation.
@@ -129,12 +129,12 @@ class Game:
     def print_board(self) -> str:
         """Returns a string representation of the actual board.
         """
-        out : str = f''
+        out : str = ''
         if DEBUG:
             out += f'The code is {self.code}\n'
         for row in self.rows:
-            for g in row[0]:
-                out += f'| {g:10} '
+            for guess in row[0]:
+                out += f'| {guess:10} '
             out += f'| {str(row[1]):25} |\n'
         out += f'You have {self.turns} guess(es) remaining'
         return out
@@ -168,6 +168,8 @@ class Game:
         return self.won
 
 def main():
+    """The main function.
+    """
     while True:
         game : Game = Game()
         while True:

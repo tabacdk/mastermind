@@ -75,7 +75,7 @@ class Tests(unittest.TestCase):
 
     def test_gameobj(self):
         """Tests that the game object is consistent
-        """"
+        """
         self.assertEqual(self.game.code, self.code)
         self.assertEqual(len(self.game.rows), 0)
         self.assertEqual(self.game.turns, 12)
